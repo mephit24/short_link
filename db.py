@@ -49,7 +49,7 @@ def get_long_link(short_link):
                     ''',
                     (short_link,)
                     )
-        res = cur.fetchall()
-        if res:
-            return res[0][0]
+        short_link = cur.fetchall()
+        if short_link:
+            return short_link[0][0]
         
