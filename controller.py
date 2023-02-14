@@ -7,8 +7,8 @@ def short_link_generating(long_link):
     short_link = crc32(long_link.encode())
     short_link = hex(short_link)
     return short_link[2:7]
-    
-#debt: custom short_link
+
+# TODO: custom short_link
 def create_pair_links(long_link, short_link=None):
     short_link_is_custom = True
     if short_link is None:

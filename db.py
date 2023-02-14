@@ -24,8 +24,8 @@ def write_pair_link_to_db(long_link, short_link):
         cur = conn.cursor()
         cur.execute(create_pair_links_sql_query, (long_link, short_link))
         conn.commit()
-        
-        
+
+
 def get_short_link(long_link):
     with conn:
         cur = conn.cursor()
@@ -37,8 +37,8 @@ def get_short_link(long_link):
                     (long_link,)
                     )
         return cur.fetchall()[0][0]
-    
-    
+
+
 def get_long_link(short_link):
     with conn:
         cur = conn.cursor()
@@ -52,4 +52,3 @@ def get_long_link(short_link):
         short_link = cur.fetchall()
         if short_link:
             return short_link[0][0]
-        

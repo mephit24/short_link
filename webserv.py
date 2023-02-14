@@ -1,13 +1,18 @@
+import re
+from pydantic import AnyUrl
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse, HTMLResponse
-from pydantic import AnyUrl
-import re
 
 from db import get_short_link, get_long_link
 from controller import create_pair_links
 
 
 webserv = FastAPI()
+
+@webserv.get("/check")
+async def check():
+    return "Short_link version 0.1"
+
 
 @webserv.get("/")
 async def longlink(url: AnyUrl, req: Request):
