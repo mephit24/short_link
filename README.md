@@ -1,6 +1,10 @@
 API service of short links.  
-For get short link send get-request like this: "http://address_of_service/?url=https://someurl.com".
-Short link sending on service will be redirect to you address.
+
+For get short link send get-request like this: "http://address_of_service/?url=https://someurl.com".  
+
+Short link sending on service will be redirect to you address: http://address_of_service/shortlink.   
+
+You can make custom short link, using parametr "custom". Example: "http://address_of_service/?url=https://someurl.com&custom=mylink".
 
 ## For start application:
 

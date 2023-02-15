@@ -8,13 +8,12 @@ def short_link_generating(long_link):
     short_link = hex(short_link)
     return short_link[2:7]
 
-# TODO: custom short_link
-def create_pair_links(long_link, short_link=None):
-    short_link_is_custom = True
-    if short_link is None:
-            short_link = short_link_generating(long_link)
-            short_link_is_custom = False
+def create_pair_links(long_link, custom=None):
+    if not custom:
+        short_link = short_link_generating(long_link)
+    else:
+        short_link = custom
     try:
         write_pair_link_to_db(long_link, short_link)
     except sqlite3.IntegrityError:
-        logging.warning("NOT UNIQUE")
+        logging.warning("Link already exist.")

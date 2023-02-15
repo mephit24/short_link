@@ -15,9 +15,9 @@ async def check():
 
 
 @webserv.get("/")
-async def longlink(url: AnyUrl, req: Request):
-    create_pair_links(url)
-    link = f"{req.url.hostname}{req.url.path}{get_short_link(url)}"
+async def longlink(url: AnyUrl, req: Request, custom: str = None):
+    create_pair_links(url, custom=custom)
+    link = {f"{req.url.hostname}{req.url.path}": [elem[0] for elem in get_short_link(url)]}
     # option for UI
     # html = f'''<html><body><a href=>{link}</a></body></html>'''
     # return HTMLResponse(content=html)
@@ -26,7 +26,7 @@ async def longlink(url: AnyUrl, req: Request):
 
 @webserv.get("/{short_link}")
 async def redirect(short_link):
-    if re.match(r"\b[\d|a-f]{5}\b", short_link):
+    if True:#re.match(r"\b[\d|a-f]{5}\b", short_link):
         long_link = get_long_link(short_link)
         if long_link:
             return RedirectResponse(long_link)
