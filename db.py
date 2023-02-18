@@ -6,8 +6,8 @@ with conn:
     cur.execute('''
                 CREATE TABLE IF NOT EXISTS "links" (
                 "id"	INTEGER NOT NULL UNIQUE,
-                "long"	TEXT NOT NULL,
-                "short"	TEXT NOT NULL UNIQUE,
+                "long"	TEXT NOT NULL CHECK(length(long) < 1024),
+                "short"	TEXT NOT NULL UNIQUE CHECK(length(short) <= 50),
                 PRIMARY KEY("id" AUTOINCREMENT)
                 );
                 ''')
@@ -36,7 +36,7 @@ def get_short_link(long_link):
                     ''',
                     (long_link,)
                     )
-        return cur.fetchall()
+        return [elem[0] for elem in cur.fetchall()]
 
 
 def get_long_link(short_link):
@@ -49,6 +49,6 @@ def get_long_link(short_link):
                     ''',
                     (short_link,)
                     )
-        short_link = cur.fetchall()
-        if short_link:
-            return short_link[0][0]
+        long_link = cur.fetchall()
+        if long_link:
+            return long_link[0][0]

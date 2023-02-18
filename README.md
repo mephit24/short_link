@@ -1,10 +1,11 @@
 API service of short links.  
 
-For get short link send get-request like this: "http://address_of_service/?url=https://someurl.com".  
+For get short link send get-request like this: "http://address_of_service/?url=https://someurl.com". 
+Use url "http://address_of_service/api/" to get API response, which is list of links. 
 
 Short link sending on service will be redirect to you address: http://address_of_service/shortlink.   
 
-You can make custom short link, using parametr "custom". Example: "http://address_of_service/?url=https://someurl.com&custom=mylink".
+You can make custom short link (you can use no more than 50 chars), using parametr "custom". Example: "http://address_of_service/?url=https://someurl.com&custom=mylink".
 
 ## For start application:
 
@@ -23,8 +24,10 @@ You can make custom short link, using parametr "custom". Example: "http://addres
   python3 -m pip install -r requirements.txt
 * Run:
   ```bash
-  python3 run.py
-* Open url http://localhost:8080 in your internet browser.
+  uvicorn webserv:webserv --reload --port=8080
+  ```
+  *You can see manual:* https://www.uvicorn.org/deployment/#running-from-the-command-line
+* Open url http://127.0.0.1:8080 in your internet browser.
 
 ## For start application in Docker:
 
@@ -34,4 +37,4 @@ You can make custom short link, using parametr "custom". Example: "http://addres
 * Run:
   ```bash
   docker run -d -p 8080:8080 mephit/short_link
-* Open url http://localhost:8080 in your internet browser.
+* Open url http://127.0.0.1:8080 in your internet browser.

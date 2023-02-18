@@ -1,0 +1,12 @@
+<html><body>
+    {% if err %}
+        <p>Link already exist</p>
+    {% endif %}
+    <p>
+        <h1>{{ long_link }}</h1><br>
+        {% for link in links %}
+            <big><a href={{link}}>{{link}}</a></big> | 
+                <small><a href=https://telegram.me/share/url?url={{request.url.hostname}}:{{request.url.port}}/{{link}}>Поделиться в Телеграм</a></small><br>
+        {% endfor %}
+    </p>
+</body></html>

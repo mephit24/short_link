@@ -15,5 +15,6 @@ def create_pair_links(long_link, custom=None):
         short_link = custom
     try:
         write_pair_link_to_db(long_link, short_link)
+        return True
     except sqlite3.IntegrityError:
         logging.warning("Link already exist.")
